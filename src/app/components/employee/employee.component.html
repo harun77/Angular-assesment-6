@@ -1,0 +1,51 @@
+<button type="button" class="btn btn-success mt-3 ml-3 mb-3" data-toggle="modal" data-target="#exampleModal"
+ (click)="createEmployee()">
+  Create Employee
+</button>
+<table class="table table-bordered">
+  <tbody>
+    <tr *ngFor="let e of employee">
+      <th scope="row">{{ e.eid }}</th>
+      <td>{{ e.name }}</td>
+      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+        (click)="editIt(e)">Edit</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="deleteIt(e.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ isEdit ? "Edit Employee" : "Create Employee" }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label for="id" class="col-sm-2 col-form-label">Id</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="id" name="id" placeholder="ID" [(ngModel)]="newEmployeeEId">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="newEmployeeName">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="isEdit ? updateIt() : createIt()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
